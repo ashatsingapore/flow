@@ -529,7 +529,7 @@
                     <changeLogFile>src/main/resources/config/liquibase/master.xml</changeLogFile>
                     <diffChangeLogFile>src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
                     <driver>org.postgresql.Driver</driver>
-                    <url>jdbc:postgresql://localhost/leanflow</url>
+                    <url>jdbc:postgresql://192.168.59.103:5432/leanflow</url>
                     <defaultSchemaName></defaultSchemaName>
                     <username>leanflow</username>
                     <password></password>

@@ -1,0 +1,133 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "process",
+            "relationshipNameCapitalized": "Process",
+            "relationshipFieldName": "process",
+            "otherEntityName": "process",
+            "relationshipType": "many-to-one",
+            "otherEntityNameCapitalized": "Process",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "authority",
+            "relationshipNameCapitalized": "Authority",
+            "relationshipFieldName": "authority",
+            "otherEntityName": "authority",
+            "relationshipType": "one-to-many",
+            "otherEntityNameCapitalized": "Authority",
+            "otherEntityRelationshipName": "processStep"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "createdUser",
+            "relationshipNameCapitalized": "CreatedUser",
+            "relationshipFieldName": "createdUser",
+            "otherEntityName": "user",
+            "relationshipType": "one-to-one",
+            "otherEntityNameCapitalized": "User",
+            "ownerSide": true
+        },
+        {
+            "relationshipId": 4,
+            "relationshipName": "acceptedBy",
+            "relationshipNameCapitalized": "AcceptedBy",
+            "relationshipFieldName": "acceptedBy",
+            "otherEntityName": "user",
+            "relationshipType": "one-to-one",
+            "otherEntityNameCapitalized": "User",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Name",
+            "fieldNameUnderscored": "name",
+            "fieldInJavaBeanMethod": "Name",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": "5"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "title",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Title",
+            "fieldNameUnderscored": "title",
+            "fieldInJavaBeanMethod": "Title",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": "5"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "description",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Description",
+            "fieldNameUnderscored": "description",
+            "fieldInJavaBeanMethod": "Description",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "createdBy",
+            "fieldType": "String",
+            "fieldNameCapitalized": "CreatedBy",
+            "fieldNameUnderscored": "created_by",
+            "fieldInJavaBeanMethod": "CreatedBy",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "creationTime",
+            "fieldType": "DateTime",
+            "fieldNameCapitalized": "CreationTime",
+            "fieldNameUnderscored": "creation_time",
+            "fieldInJavaBeanMethod": "CreationTime",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "acceptedTime",
+            "fieldType": "DateTime",
+            "fieldNameCapitalized": "AcceptedTime",
+            "fieldNameUnderscored": "accepted_time",
+            "fieldInJavaBeanMethod": "AcceptedTime",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "completedTime",
+            "fieldType": "DateTime",
+            "fieldNameCapitalized": "CompletedTime",
+            "fieldNameUnderscored": "completed_time",
+            "fieldInJavaBeanMethod": "CompletedTime",
+            "fieldValidate": false
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOwnerOneToOne": true,
+    "fieldsContainOneToMany": true,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": true,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": true,
+    "fieldsContainDate": false,
+    "changelogDate": "20150525154116",
+    "pagination": "no",
+    "validation": true
+}

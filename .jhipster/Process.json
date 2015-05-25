@@ -1,0 +1,86 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "processStep",
+            "relationshipNameCapitalized": "ProcessStep",
+            "relationshipFieldName": "processStep",
+            "otherEntityName": "processStep",
+            "relationshipType": "one-to-many",
+            "otherEntityNameCapitalized": "ProcessStep",
+            "otherEntityRelationshipName": "process"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "authority",
+            "relationshipNameCapitalized": "Authority",
+            "relationshipFieldName": "authority",
+            "otherEntityName": "authority",
+            "relationshipType": "one-to-many",
+            "otherEntityNameCapitalized": "Authority",
+            "otherEntityRelationshipName": "process"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Name",
+            "fieldNameUnderscored": "name",
+            "fieldInJavaBeanMethod": "Name",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": "5"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "title",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Title",
+            "fieldNameUnderscored": "title",
+            "fieldInJavaBeanMethod": "Title",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": "5"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "description",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Description",
+            "fieldNameUnderscored": "description",
+            "fieldInJavaBeanMethod": "Description",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "creationTime",
+            "fieldType": "DateTime",
+            "fieldNameCapitalized": "CreationTime",
+            "fieldNameUnderscored": "creation_time",
+            "fieldInJavaBeanMethod": "CreationTime",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOwnerOneToOne": false,
+    "fieldsContainOneToMany": true,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": true,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": true,
+    "fieldsContainDate": false,
+    "changelogDate": "20150525153015",
+    "pagination": "no",
+    "validation": true
+}

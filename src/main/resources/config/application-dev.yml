@@ -6,11 +6,11 @@ spring:
         active: dev
     datasource:
         dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
-        url: 
+        url: jdbc:postgresql://192.168.59.103:5432/leanflow
         databaseName: leanflow
-        serverName: localhost
+        serverName: 192.168.59.103
         username: leanflow
-        password: 
+        password: leanflow
 
     jpa:
         database-platform: org.hibernate.dialect.PostgreSQL82Dialect

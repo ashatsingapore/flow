@@ -1,0 +1,198 @@
+<div>
+
+    <h2 translate="leanflowApp.processStep.home.title">ProcessStep</h2>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#saveProcessStepModal" ng-click="clear()">
+                    <span class="glyphicon glyphicon-flash"></span> <span translate="leanflowApp.processStep.home.createLabel">Create a new ProcessStep</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="saveProcessStepModal" tabindex="-1" role="dialog" aria-labelledby="myProcessStepLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" id="myProcessStepLabel" translate="leanflowApp.processStep.home.createOrEditLabel">Create or edit a ProcessStep</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input type="text" class="form-control" name="id"
+                                   ng-model="processStep.id" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label translate="leanflowApp.processStep.name">Name</label>
+                            <input type="text" class="form-control" name="name"
+                                   ng-model="processStep.name" required ng-minlength="5">
+
+                            <div ng-show="editForm.name.$invalid">
+                                <p class="help-block"
+                                   ng-show="editForm.name.$error.required" translate="entity.validation.required">
+                                    This field is required.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.name.$error.minlength" translate="entity.validation.minlength" translate-value-min="5">
+                                    This field is required to be at least 5 characters.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label translate="leanflowApp.processStep.title">Title</label>
+                            <input type="text" class="form-control" name="title"
+                                   ng-model="processStep.title" required ng-minlength="5">
+
+                            <div ng-show="editForm.title.$invalid">
+                                <p class="help-block"
+                                   ng-show="editForm.title.$error.required" translate="entity.validation.required">
+                                    This field is required.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.title.$error.minlength" translate="entity.validation.minlength" translate-value-min="5">
+                                    This field is required to be at least 5 characters.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label translate="leanflowApp.processStep.description">Description</label>
+                            <input type="text" class="form-control" name="description"
+                                   ng-model="processStep.description">
+
+                        </div>
+                        <div class="form-group">
+                            <label translate="leanflowApp.processStep.createdBy">CreatedBy</label>
+                            <input type="text" class="form-control" name="createdBy"
+                                   ng-model="processStep.createdBy">
+
+                        </div>
+                        <div class="form-group">
+                            <label translate="leanflowApp.processStep.creationTime">CreationTime</label>
+                            <input type="datetime-local" class="form-control" name="creationTime"
+                                   ng-model="processStep.creationTime" ng-model-options="{timezone: 'UTC'}" required>
+
+                            <div ng-show="editForm.creationTime.$invalid">
+                                <p class="help-block"
+                                   ng-show="editForm.creationTime.$error.required" translate="entity.validation.required">
+                                    This field is required.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.creationTime.$error.datetimelocal" translate="entity.validation.datetimelocal">
+                                    This field should be a date and time.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label translate="leanflowApp.processStep.acceptedTime">AcceptedTime</label>
+                            <input type="datetime-local" class="form-control" name="acceptedTime"
+                                   ng-model="processStep.acceptedTime" ng-model-options="{timezone: 'UTC'}">
+
+                        </div>
+                        <div class="form-group">
+                            <label translate="leanflowApp.processStep.completedTime">CompletedTime</label>
+                            <input type="datetime-local" class="form-control" name="completedTime"
+                                   ng-model="processStep.completedTime" ng-model-options="{timezone: 'UTC'}">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label translate="leanflowApp.processStep.process">process</label>
+                            <select class="form-control" name="process" ng-model="processStep.process.id" ng-options="process.id as process.name for process in processs">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteProcessStepConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteForm" ng-submit="confirmDelete(processStep.id)">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p translate="leanflowApp.processStep.delete.question" translate-values="{id: '{{processStep.id}}'}">Are you sure you want to delete this ProcessStep?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th translate="leanflowApp.processStep.name">Name</th>
+                    <th translate="leanflowApp.processStep.title">Title</th>
+                    <th translate="leanflowApp.processStep.description">Description</th>
+                    <th translate="leanflowApp.processStep.createdBy">CreatedBy</th>
+                    <th translate="leanflowApp.processStep.creationTime">CreationTime</th>
+                    <th translate="leanflowApp.processStep.acceptedTime">AcceptedTime</th>
+                    <th translate="leanflowApp.processStep.completedTime">CompletedTime</th>
+                    <th translate="leanflowApp.processStep.process">process</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="processStep in processSteps">
+                    <td><a ui-sref="processStepDetail({id:processStep.id})">{{processStep.id}}</a></td>
+                    <td>{{processStep.name}}</td>
+                    <td>{{processStep.title}}</td>
+                    <td>{{processStep.description}}</td>
+                    <td>{{processStep.createdBy}}</td>
+                    <td>{{processStep.creationTime}}</td>
+                    <td>{{processStep.acceptedTime}}</td>
+                    <td>{{processStep.completedTime}}</td>
+                    <td>{{processStep.process.name}}</td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="processStepDetail({id:processStep.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                        </button>
+                        <button type="submit"
+                                ng-click="showUpdate(processStep.id)"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                        </button>
+                        <button type="submit"
+                                ng-click="delete(processStep.id)"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

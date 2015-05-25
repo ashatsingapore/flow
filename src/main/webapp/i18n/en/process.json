@@ -1,0 +1,23 @@
+{
+    "leanflowApp": {
+        "process" : {
+            "home": {
+                "title": "Processs",
+                "createLabel": "Create a new Process",
+                "createOrEditLabel": "Create or edit a Process"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Process {{ id }}?"
+            },
+            "detail": {
+                "title": "Process"
+            },
+            "name": "Name",
+            "title": "Title",
+            "description": "Description",
+            "creationTime": "CreationTime",
+            "processStep": "processStep",
+            "authority": "authority"
+        }
+    }
+}
