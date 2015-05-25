@@ -65,20 +65,20 @@ public class ProcessStep implements Serializable {
     private DateTime completedTime;
 
     @ManyToOne
-    @JoinColumn(name = "title", insertable = false, updatable = false)
+    @JoinColumn(name="process", referencedColumnName = "title", insertable = false, updatable = false)
     private Process process;
 
     @OneToMany
-    @JoinColumn(name = "name", insertable = false, updatable = false)
-//    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinColumn(name = "authority", referencedColumnName="name", insertable = false, updatable = false)
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Authority> authoritys = new HashSet<Authority>();
 
     @OneToOne
-    @JoinColumn(name = "id", insertable = false, updatable = false)
+    @JoinColumn(name="createdUser", referencedColumnName = "id", insertable = false, updatable = false)
     private User createdUser;
 
     @OneToOne
-    @JoinColumn(name = "id", insertable = false, updatable = false)
+    @JoinColumn(name="acceptedBy", referencedColumnName = "id", insertable = false, updatable = false)
     private User acceptedBy;
 
     public Long getId() {

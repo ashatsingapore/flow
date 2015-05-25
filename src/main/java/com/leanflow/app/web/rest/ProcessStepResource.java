@@ -83,10 +83,10 @@ public class ProcessStepResource {
     public ResponseEntity<ProcessStep> get(@PathVariable Long id) {
         log.debug("REST request to get ProcessStep : {}", id);
         return Optional.ofNullable(processStepRepository.findOne(id))
-            .map(processStep -> new ResponseEntity<>(
+            .map(processStep -> new ResponseEntity<ProcessStep>(
                 processStep,
                 HttpStatus.OK))
-            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+            .orElse(new ResponseEntity<ProcessStep>(HttpStatus.NOT_FOUND));
     }
 
     /**

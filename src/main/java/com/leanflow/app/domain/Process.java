@@ -55,7 +55,7 @@ public class Process implements Serializable {
     private Set<ProcessStep> processSteps = new HashSet<ProcessStep>();
 
     @OneToMany
-    @JoinColumn(name = "name", insertable = false, updatable = false)
+    @JoinColumn(name = "authority", referencedColumnName="name", insertable = false, updatable = false)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Authority> authoritys = new HashSet<Authority>();
 

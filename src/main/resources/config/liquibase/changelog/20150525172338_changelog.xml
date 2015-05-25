@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+   <changeSet author="ash (generated)" id="1432574641279-1">
+      <addColumn tableName="PROCESSSTEP">
+         <column name="acceptedBy" type="int8"/>
+      </addColumn>
+   </changeSet>
+   <changeSet author="ash (generated)" id="1432574641279-2">
+      <addColumn tableName="JHI_AUTHORITY">
+         <column name="authority" type="varchar(255)"/>
+      </addColumn>
+   </changeSet>
+   <changeSet author="ash (generated)" id="1432574641279-3">
+      <addColumn tableName="PROCESSSTEP">
+         <column name="createdUser" type="int8"/>
+      </addColumn>
+   </changeSet>
+   <changeSet author="ash (generated)" id="1432574641279-4">
+      <addColumn tableName="PROCESSSTEP">
+         <column name="process" type="varchar(255)"/>
+      </addColumn>
+   </changeSet>
+   <changeSet author="ash (generated)" id="1432574641279-5">
+      <addUniqueConstraint columnNames="name"
+                           deferrable="false"
+                           disabled="false"
+                           initiallyDeferred="false"
+                           tableName="PROCESS"/>
+   </changeSet>
+   <changeSet author="ash (generated)" id="1432574641279-6">
+      <addUniqueConstraint columnNames="title"
+                           deferrable="false"
+                           disabled="false"
+                           initiallyDeferred="false"
+                           tableName="PROCESS"/>
+   </changeSet>
+   <changeSet author="ash (generated)" id="1432574641279-7">
+      <addUniqueConstraint columnNames="name"
+                           deferrable="false"
+                           disabled="false"
+                           initiallyDeferred="false"
+                           tableName="PROCESSSTEP"/>
+   </changeSet>
+   <changeSet author="ash (generated)" id="1432574641279-8">
+      <addForeignKeyConstraint baseColumnNames="process"
+                               baseTableName="PROCESSSTEP"
+                               constraintName="FK_ljitukkrrivnkwiut4bi15asu"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="title"
+                               referencedTableName="PROCESS"/>
+   </changeSet>
+   <changeSet author="ash (generated)" id="1432574641279-9">
+      <addForeignKeyConstraint baseColumnNames="acceptedBy"
+                               baseTableName="PROCESSSTEP"
+                               constraintName="FK_lsnnljq9g29p5dwrtt3icnc2q"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="JHI_USER"/>
+   </changeSet>
+   <changeSet author="ash (generated)" id="1432574641279-10">
+      <addForeignKeyConstraint baseColumnNames="createdUser"
+                               baseTableName="PROCESSSTEP"
+                               constraintName="FK_pclw2lj5ghtdxt5j4ejv3y6ss"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="JHI_USER"/>
+   </changeSet>
+   <changeSet author="ash (generated)" id="1432574641279-11">
+      <dropForeignKeyConstraint baseTableName="processstep"
+                                constraintName="fk_processstep_acceptedby_id"/>
+   </changeSet>
+   <changeSet author="ash (generated)" id="1432574641279-12">
+      <dropForeignKeyConstraint baseTableName="processstep"
+                                constraintName="fk_processstep_createduser_id"/>
+   </changeSet>
+   <changeSet author="ash (generated)" id="1432574641279-13">
+      <dropForeignKeyConstraint baseTableName="processstep" constraintName="fk_processstep_process_id"/>
+   </changeSet>
+   <changeSet author="ash (generated)" id="1432574641279-14">
+      <dropColumn columnName="acceptedby_id" tableName="processstep"/>
+   </changeSet>
+   <changeSet author="ash (generated)" id="1432574641279-15">
+      <dropColumn columnName="createduser_id" tableName="processstep"/>
+   </changeSet>
+   <changeSet author="ash (generated)" id="1432574641279-16">
+      <dropColumn columnName="process_id" tableName="processstep"/>
+   </changeSet>
+   <changeSet author="ash (generated)" id="1432574641279-17">
+      <addNotNullConstraint columnDataType="timestamp"
+                            columnName="accepted_time"
+                            tableName="PROCESSSTEP"/>
+   </changeSet>
+   <changeSet author="ash (generated)" id="1432574641279-18">
+      <addNotNullConstraint columnDataType="timestamp"
+                            columnName="completed_time"
+                            tableName="PROCESSSTEP"/>
+   </changeSet>
+</databaseChangeLog>
