@@ -1,0 +1,78 @@
+
+<div>
+    <h2><span translate="leanflowApp.processStep.detail.title">ProcessStep</span> {{processStep.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="entity.detail.field">Field</th>
+                    <th translate="entity.detail.value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span translate="leanflowApp.processStep.name">Name</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{processStep.name}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="leanflowApp.processStep.title">Title</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{processStep.title}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="leanflowApp.processStep.description">Description</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{processStep.description}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="leanflowApp.processStep.creationTime">CreationTime</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{processStep.creationTime}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="leanflowApp.processStep.acceptedTime">AcceptedTime</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{processStep.acceptedTime}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="leanflowApp.processStep.completedTime">CompletedTime</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{processStep.completedTime}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="leanflowApp.processStep.process">process</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{processStep.process.name}}" readonly>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="processStep"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

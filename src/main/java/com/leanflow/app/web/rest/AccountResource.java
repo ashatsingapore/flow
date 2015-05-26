@@ -109,7 +109,7 @@ public class AccountResource {
     @Timed
     public ResponseEntity<UserDTO> getAccount() {
         return Optional.ofNullable(userService.getUserWithAuthorities())
-            .map(user -> new ResponseEntity<>(
+            .map(user -> new ResponseEntity<UserDTO>(
                 new UserDTO(
                     user.getLogin(),
                     null,
@@ -119,7 +119,7 @@ public class AccountResource {
                     user.getLangKey(),
                     user.getAuthorities().stream().map(Authority::getName).collect(Collectors.toCollection(LinkedList::new))),
                 HttpStatus.OK))
-            .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
+            .orElse(new ResponseEntity<UserDTO>(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
     /**
@@ -165,10 +165,10 @@ public class AccountResource {
     @Timed
     public ResponseEntity<List<PersistentToken>> getCurrentSessions() {
         return userRepository.findOneByLogin(SecurityUtils.getCurrentLogin())
-            .map(user -> new ResponseEntity<>(
+            .map(user -> new ResponseEntity<List<PersistentToken>>(
                 persistentTokenRepository.findByUser(user),
                 HttpStatus.OK))
-            .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
+            .orElse(new ResponseEntity<List<PersistentToken>>(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
     /**

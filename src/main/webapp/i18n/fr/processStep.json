@@ -1,0 +1,28 @@
+{
+    "leanflowApp": {
+        "processStep" : {
+            "home": {
+                "title": "ProcessSteps",
+                "createLabel": "Créer un nouveau ProcessStep",
+                "createOrEditLabel": "Créer ou éditer un ProcessStep"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le ProcessStep {{ id }} ?"
+            },
+            "detail": {
+                "title": "ProcessStep"
+            },
+            "name": "Name",
+            "title": "Title",
+            "description": "Description",
+            "creationTime": "CreationTime",
+            "acceptedTime": "AcceptedTime",
+            "completedTime": "CompletedTime",
+            "process": "process",
+            "groups": "groups",
+            "createdBy": "createdBy",
+            "acceptedBy": "acceptedBy"
+        }
+    }
+}
+
