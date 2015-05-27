@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity ProcessStep.
+    -->
+    <changeSet id="20150526161004" author="jhipster">
+        <createTable tableName="PROCESSSTEP">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="description" type="varchar(255)"/>
+            <column name="creation_time" type="timestamp">
+                <constraints nullable="false" />
+            </column>
+            <column name="accepted_time" type="timestamp"/>
+            <column name="completed_time" type="timestamp"/>
+            <column name="process_id" type="bigint"/>
+            <column name="createdby_id" type="bigint"/>
+            <column name="acceptedby_id" type="bigint"/>
+        </createTable>
+        <dropDefaultValue tableName="PROCESSSTEP" columnName="creation_time" columnDataType="datetime"/>
+
+        <dropDefaultValue tableName="PROCESSSTEP" columnName="accepted_time" columnDataType="datetime"/>
+
+        <dropDefaultValue tableName="PROCESSSTEP" columnName="completed_time" columnDataType="datetime"/>
+
+        
+        <addForeignKeyConstraint baseColumnNames="process_id"
+                                 baseTableName="PROCESSSTEP"
+                                 constraintName="fk_processstep_process_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="PROCESS"/>
+
+        <addForeignKeyConstraint baseColumnNames="createdby_id"
+                                 baseTableName="PROCESSSTEP"
+                                 constraintName="fk_processstep_createdby_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="JHI_USER"/>
+
+        <addForeignKeyConstraint baseColumnNames="acceptedby_id"
+                                 baseTableName="PROCESSSTEP"
+                                 constraintName="fk_processstep_acceptedby_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="JHI_USER"/>
+
+    </changeSet>
+</databaseChangeLog>
