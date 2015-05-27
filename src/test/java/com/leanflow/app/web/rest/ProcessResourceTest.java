@@ -85,15 +85,15 @@ public class ProcessResourceTest {
         int databaseSizeBeforeCreate = processRepository.findAll().size();
 
         // Create the Process
-        restProcessMockMvc.perform(post("/api/processs")
+        restProcessMockMvc.perform(post("/api/process")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(process)))
                 .andExpect(status().isCreated());
 
         // Validate the Process in the database
-        List<Process> processs = processRepository.findAll();
-        assertThat(processs).hasSize(databaseSizeBeforeCreate + 1);
-        Process testProcess = processs.get(processs.size() - 1);
+        List<Process> process = processRepository.findAll();
+        assertThat(process).hasSize(databaseSizeBeforeCreate + 1);
+        Process testProcess = process.get(process.size() - 1);
         assertThat(testProcess.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testProcess.getTitle()).isEqualTo(DEFAULT_TITLE);
         assertThat(testProcess.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
@@ -109,14 +109,14 @@ public class ProcessResourceTest {
         process.setName(null);
 
         // Create the Process, which fails.
-        restProcessMockMvc.perform(post("/api/processs")
+        restProcessMockMvc.perform(post("/api/process")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(process)))
                 .andExpect(status().isBadRequest());
 
         // Validate the database is still empty
-        List<Process> processs = processRepository.findAll();
-        assertThat(processs).hasSize(0);
+        List<Process> process = processRepository.findAll();
+        assertThat(process).hasSize(0);
     }
 
     @Test
@@ -128,14 +128,14 @@ public class ProcessResourceTest {
         process.setTitle(null);
 
         // Create the Process, which fails.
-        restProcessMockMvc.perform(post("/api/processs")
+        restProcessMockMvc.perform(post("/api/process")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(process)))
                 .andExpect(status().isBadRequest());
 
         // Validate the database is still empty
-        List<Process> processs = processRepository.findAll();
-        assertThat(processs).hasSize(0);
+        List<Process> process = processRepository.findAll();
+        assertThat(process).hasSize(0);
     }
 
     @Test
@@ -147,14 +147,14 @@ public class ProcessResourceTest {
         process.setCreationTime(null);
 
         // Create the Process, which fails.
-        restProcessMockMvc.perform(post("/api/processs")
+        restProcessMockMvc.perform(post("/api/process")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(process)))
                 .andExpect(status().isBadRequest());
 
         // Validate the database is still empty
-        List<Process> processs = processRepository.findAll();
-        assertThat(processs).hasSize(0);
+        List<Process> process = processRepository.findAll();
+        assertThat(process).hasSize(0);
     }
 
     @Test
@@ -163,8 +163,8 @@ public class ProcessResourceTest {
         // Initialize the database
         processRepository.saveAndFlush(process);
 
-        // Get all the processs
-        restProcessMockMvc.perform(get("/api/processs"))
+        // Get all the process
+        restProcessMockMvc.perform(get("/api/process"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(process.getId().intValue())))
@@ -181,7 +181,7 @@ public class ProcessResourceTest {
         processRepository.saveAndFlush(process);
 
         // Get the process
-        restProcessMockMvc.perform(get("/api/processs/{id}", process.getId()))
+        restProcessMockMvc.perform(get("/api/process/{id}", process.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(process.getId().intValue()))
@@ -195,7 +195,7 @@ public class ProcessResourceTest {
     @Transactional
     public void getNonExistingProcess() throws Exception {
         // Get the process
-        restProcessMockMvc.perform(get("/api/processs/{id}", Long.MAX_VALUE))
+        restProcessMockMvc.perform(get("/api/process/{id}", Long.MAX_VALUE))
                 .andExpect(status().isNotFound());
     }
 
@@ -212,15 +212,15 @@ public class ProcessResourceTest {
         process.setTitle(UPDATED_TITLE);
         process.setDescription(UPDATED_DESCRIPTION);
         process.setCreationTime(UPDATED_CREATION_TIME);
-        restProcessMockMvc.perform(put("/api/processs")
+        restProcessMockMvc.perform(put("/api/process")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(process)))
                 .andExpect(status().isOk());
 
         // Validate the Process in the database
-        List<Process> processs = processRepository.findAll();
-        assertThat(processs).hasSize(databaseSizeBeforeUpdate);
-        Process testProcess = processs.get(processs.size() - 1);
+        List<Process> process = processRepository.findAll();
+        assertThat(process).hasSize(databaseSizeBeforeUpdate);
+        Process testProcess = process.get(process.size() - 1);
         assertThat(testProcess.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testProcess.getTitle()).isEqualTo(UPDATED_TITLE);
         assertThat(testProcess.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
@@ -236,12 +236,12 @@ public class ProcessResourceTest {
 		int databaseSizeBeforeDelete = processRepository.findAll().size();
 
         // Get the process
-        restProcessMockMvc.perform(delete("/api/processs/{id}", process.getId())
+        restProcessMockMvc.perform(delete("/api/process/{id}", process.getId())
                 .accept(TestUtil.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk());
 
         // Validate the database is empty
-        List<Process> processs = processRepository.findAll();
-        assertThat(processs).hasSize(databaseSizeBeforeDelete - 1);
+        List<Process> process = processRepository.findAll();
+        assertThat(process).hasSize(databaseSizeBeforeDelete - 1);
     }
 }

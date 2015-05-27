@@ -99,7 +99,7 @@
 
                         <div class="form-group">
                             <label translate="leanflowApp.processStep.process">process</label>
-                            <select class="form-control" name="process" ng-model="processStep.process.id" ng-options="process.id as process.name for process in processs">
+                            <select class="form-control" name="process" ng-model="processStep.process.id" ng-options="process.id as process.name for process in process">
                             </select>
                         </div>
                     </div>
@@ -157,28 +157,28 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="processStep in processSteps">
-                    <td><a ui-sref="processStepDetail({id:processStep.id})">{{processStep.id}}</a></td>
-                    <td>{{processStep.name}}</td>
-                    <td>{{processStep.title}}</td>
-                    <td>{{processStep.description}}</td>
-                    <td>{{processStep.creationTime}}</td>
-                    <td>{{processStep.acceptedTime}}</td>
-                    <td>{{processStep.completedTime}}</td>
-                    <td>{{processStep.process.name}}</td>
+                <tr ng-repeat="processSt in processStep">
+                    <td><a ui-sref="processStepDetail({id:processSt.id})">{{processSt.id}}</a></td>
+                    <td>{{processSt.name}}</td>
+                    <td>{{processSt.title}}</td>
+                    <td>{{processSt.description}}</td>
+                    <td>{{processSt.creationTime}}</td>
+                    <td>{{processSt.acceptedTime}}</td>
+                    <td>{{processSt.completedTime}}</td>
+                    <td>{{processSt.process.name}}</td>
                     <td>
                         <button type="submit"
-                                ui-sref="processStepDetail({id:processStep.id})"
+                                ui-sref="processStepDetail({id:processSt.id})"
                                 class="btn btn-info btn-sm">
                             <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
                         </button>
                         <button type="submit"
-                                ng-click="showUpdate(processStep.id)"
+                                ng-click="showUpdate(processSt.id)"
                                 class="btn btn-primary btn-sm">
                             <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
                         </button>
                         <button type="submit"
-                                ng-click="delete(processStep.id)"
+                                ng-click="delete(processSt.id)"
                                 class="btn btn-danger btn-sm">
                             <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
                         </button>

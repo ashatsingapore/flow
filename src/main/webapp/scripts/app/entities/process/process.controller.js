@@ -2,12 +2,12 @@
 
 angular.module('leanflowApp')
     .controller('ProcessController', function ($scope, Process, User, ProcessStep) {
-        $scope.processs = [];
+        $scope.process = [];
         $scope.users = User.query();
         $scope.processsteps = ProcessStep.query();
         $scope.loadAll = function() {
             Process.query(function(result) {
-               $scope.processs = result;
+               $scope.process = result;
             });
         };
         $scope.loadAll();

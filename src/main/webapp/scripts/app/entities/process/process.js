@@ -12,7 +12,7 @@ angular.module('leanflowApp')
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/entities/process/processs.html',
+                        templateUrl: 'scripts/app/entities/process/process.html',
                         controller: 'ProcessController'
                     }
                 },

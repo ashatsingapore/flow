@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('leanflowApp')
-    .controller('ProcessStepDetailController', function ($scope, $stateParams, ProcessStep, Process, Authority, User) {
+    .controller('ProcessStepDetailController', function ($scope, $stateParams, ProcessStep, Process, User) {
         $scope.processStep = {};
         $scope.load = function (id) {
             ProcessStep.get({id: id}, function(result) {

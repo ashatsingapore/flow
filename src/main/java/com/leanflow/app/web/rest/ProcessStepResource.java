@@ -30,9 +30,9 @@ public class ProcessStepResource {
     private ProcessStepRepository processStepRepository;
 
     /**
-     * POST  /processSteps -> Create a new processStep.
+     * POST  /processStep -> Create a new processStep.
      */
-    @RequestMapping(value = "/processSteps",
+    @RequestMapping(value = "/processStep",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
@@ -42,13 +42,13 @@ public class ProcessStepResource {
             return ResponseEntity.badRequest().header("Failure", "A new processStep cannot already have an ID").build();
         }
         processStepRepository.save(processStep);
-        return ResponseEntity.created(new URI("/api/processSteps/" + processStep.getId())).build();
+        return ResponseEntity.created(new URI("/api/processStep/" + processStep.getId())).build();
     }
 
     /**
-     * PUT  /processSteps -> Updates an existing processStep.
+     * PUT  /processStep -> Updates an existing processStep.
      */
-    @RequestMapping(value = "/processSteps",
+    @RequestMapping(value = "/processStep",
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
@@ -62,9 +62,9 @@ public class ProcessStepResource {
     }
 
     /**
-     * GET  /processSteps -> get all the processSteps.
+     * GET  /processStep -> get all the processStep.
      */
-    @RequestMapping(value = "/processSteps",
+    @RequestMapping(value = "/processStep",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
@@ -74,9 +74,9 @@ public class ProcessStepResource {
     }
 
     /**
-     * GET  /processSteps/:id -> get the "id" processStep.
+     * GET  /processStep/:id -> get the "id" processStep.
      */
-    @RequestMapping(value = "/processSteps/{id}",
+    @RequestMapping(value = "/processStep/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
@@ -90,9 +90,9 @@ public class ProcessStepResource {
     }
 
     /**
-     * DELETE  /processSteps/:id -> delete the "id" processStep.
+     * DELETE  /processStep/:id -> delete the "id" processStep.
      */
-    @RequestMapping(value = "/processSteps/{id}",
+    @RequestMapping(value = "/processStep/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed

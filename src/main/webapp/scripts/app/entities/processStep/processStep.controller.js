@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('leanflowApp')
-    .controller('ProcessStepController', function ($scope, ProcessStep, Process, Authority, User) {
-        $scope.processSteps = [];
-        $scope.processs = Process.query();
-        $scope.authoritys = Authority.query();
+    .controller('ProcessStepController', function ($scope, ProcessStep, Process, User) {
+        $scope.processStep = [];
+        $scope.process = Process.query();
+        //$scope.authoritys = Authority.query();
         $scope.users = User.query();
         $scope.loadAll = function() {
             ProcessStep.query(function(result) {
-               $scope.processSteps = result;
+               $scope.processStep = result;
             });
         };
         $scope.loadAll();

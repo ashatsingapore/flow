@@ -2,7 +2,7 @@
 
 angular.module('leanflowApp')
     .factory('ProcessStep', function ($resource) {
-        return $resource('api/processSteps/:id', {}, {
+        return $resource('api/processStep/:id', {}, {
             'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',

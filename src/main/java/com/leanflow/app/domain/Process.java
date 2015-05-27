@@ -55,7 +55,7 @@ public class Process implements Serializable {
     @OneToMany(mappedBy = "process")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<ProcessStep> processSteps = new HashSet<ProcessStep>();
+    private Set<ProcessStep> processStep = new HashSet<ProcessStep>();
 
     public Long getId() {
         return id;
@@ -106,11 +106,11 @@ public class Process implements Serializable {
     }
 
     public Set<ProcessStep> getProcessSteps() {
-        return processSteps;
+        return processStep;
     }
 
-    public void setProcessSteps(Set<ProcessStep> processSteps) {
-        this.processSteps = processSteps;
+    public void setProcessSteps(Set<ProcessStep> processStep) {
+        this.processStep = processStep;
     }
 
     @Override

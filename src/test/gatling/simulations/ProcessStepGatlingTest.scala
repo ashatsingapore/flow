@@ -60,12 +60,12 @@ class ProcessStepGatlingTest extends Simulation {
         .pause(10)
         .repeat(2) {
             exec(http("Get all processSteps")
-            .get("/api/processSteps")
+            .get("/api/processStep")
             .headers(headers_http_authenticated)
             .check(status.is(200)))
             .pause(10 seconds, 20 seconds)
             .exec(http("Create new processStep")
-            .put("/api/processSteps")
+            .put("/api/processStep")
             .headers(headers_http_authenticated)
             .body(StringBody("""{"id":null, "name":"SAMPLE_TEXT", "title":"SAMPLE_TEXT", "description":"SAMPLE_TEXT", "creationTime":"2020-01-01T00:00:00.000Z", "acceptedTime":"2020-01-01T00:00:00.000Z", "completedTime":"2020-01-01T00:00:00.000Z"}""")).asJSON
             .check(status.is(201))

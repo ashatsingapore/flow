@@ -30,9 +30,9 @@ public class ProcessResource {
     private ProcessRepository processRepository;
 
     /**
-     * POST  /processs -> Create a new process.
+     * POST  /process -> Create a new process.
      */
-    @RequestMapping(value = "/processs",
+    @RequestMapping(value = "/process",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
@@ -42,13 +42,13 @@ public class ProcessResource {
             return ResponseEntity.badRequest().header("Failure", "A new process cannot already have an ID").build();
         }
         processRepository.save(process);
-        return ResponseEntity.created(new URI("/api/processs/" + process.getId())).build();
+        return ResponseEntity.created(new URI("/api/process/" + process.getId())).build();
     }
 
     /**
-     * PUT  /processs -> Updates an existing process.
+     * PUT  /process -> Updates an existing process.
      */
-    @RequestMapping(value = "/processs",
+    @RequestMapping(value = "/process",
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
@@ -62,9 +62,9 @@ public class ProcessResource {
     }
 
     /**
-     * GET  /processs -> get all the processs.
+     * GET  /process -> get all the process.
      */
-    @RequestMapping(value = "/processs",
+    @RequestMapping(value = "/process",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
@@ -74,9 +74,9 @@ public class ProcessResource {
     }
 
     /**
-     * GET  /processs/:id -> get the "id" process.
+     * GET  /process/:id -> get the "id" process.
      */
-    @RequestMapping(value = "/processs/{id}",
+    @RequestMapping(value = "/process/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
@@ -90,9 +90,9 @@ public class ProcessResource {
     }
 
     /**
-     * DELETE  /processs/:id -> delete the "id" process.
+     * DELETE  /process/:id -> delete the "id" process.
      */
-    @RequestMapping(value = "/processs/{id}",
+    @RequestMapping(value = "/process/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed

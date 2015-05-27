@@ -95,15 +95,15 @@ public class ProcessStepResourceTest {
         int databaseSizeBeforeCreate = processStepRepository.findAll().size();
 
         // Create the ProcessStep
-        restProcessStepMockMvc.perform(post("/api/processSteps")
+        restProcessStepMockMvc.perform(post("/api/processStep")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(processStep)))
                 .andExpect(status().isCreated());
 
         // Validate the ProcessStep in the database
-        List<ProcessStep> processSteps = processStepRepository.findAll();
-        assertThat(processSteps).hasSize(databaseSizeBeforeCreate + 1);
-        ProcessStep testProcessStep = processSteps.get(processSteps.size() - 1);
+        List<ProcessStep> processStep = processStepRepository.findAll();
+        assertThat(processStep).hasSize(databaseSizeBeforeCreate + 1);
+        ProcessStep testProcessStep = processStep.get(processStep.size() - 1);
         assertThat(testProcessStep.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testProcessStep.getTitle()).isEqualTo(DEFAULT_TITLE);
         assertThat(testProcessStep.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
@@ -121,14 +121,14 @@ public class ProcessStepResourceTest {
         processStep.setName(null);
 
         // Create the ProcessStep, which fails.
-        restProcessStepMockMvc.perform(post("/api/processSteps")
+        restProcessStepMockMvc.perform(post("/api/processStep")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(processStep)))
                 .andExpect(status().isBadRequest());
 
         // Validate the database is still empty
-        List<ProcessStep> processSteps = processStepRepository.findAll();
-        assertThat(processSteps).hasSize(0);
+        List<ProcessStep> processStep = processStepRepository.findAll();
+        assertThat(processStep).hasSize(0);
     }
 
     @Test
@@ -140,14 +140,14 @@ public class ProcessStepResourceTest {
         processStep.setTitle(null);
 
         // Create the ProcessStep, which fails.
-        restProcessStepMockMvc.perform(post("/api/processSteps")
+        restProcessStepMockMvc.perform(post("/api/processStep")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(processStep)))
                 .andExpect(status().isBadRequest());
 
         // Validate the database is still empty
-        List<ProcessStep> processSteps = processStepRepository.findAll();
-        assertThat(processSteps).hasSize(0);
+        List<ProcessStep> processStep = processStepRepository.findAll();
+        assertThat(processStep).hasSize(0);
     }
 
     @Test
@@ -159,14 +159,14 @@ public class ProcessStepResourceTest {
         processStep.setCreationTime(null);
 
         // Create the ProcessStep, which fails.
-        restProcessStepMockMvc.perform(post("/api/processSteps")
+        restProcessStepMockMvc.perform(post("/api/processStep")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(processStep)))
                 .andExpect(status().isBadRequest());
 
         // Validate the database is still empty
-        List<ProcessStep> processSteps = processStepRepository.findAll();
-        assertThat(processSteps).hasSize(0);
+        List<ProcessStep> processStep = processStepRepository.findAll();
+        assertThat(processStep).hasSize(0);
     }
 
     @Test
@@ -175,8 +175,8 @@ public class ProcessStepResourceTest {
         // Initialize the database
         processStepRepository.saveAndFlush(processStep);
 
-        // Get all the processSteps
-        restProcessStepMockMvc.perform(get("/api/processSteps"))
+        // Get all the processStep
+        restProcessStepMockMvc.perform(get("/api/processStep"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(processStep.getId().intValue())))
@@ -195,7 +195,7 @@ public class ProcessStepResourceTest {
         processStepRepository.saveAndFlush(processStep);
 
         // Get the processStep
-        restProcessStepMockMvc.perform(get("/api/processSteps/{id}", processStep.getId()))
+        restProcessStepMockMvc.perform(get("/api/processStep/{id}", processStep.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(processStep.getId().intValue()))
@@ -211,7 +211,7 @@ public class ProcessStepResourceTest {
     @Transactional
     public void getNonExistingProcessStep() throws Exception {
         // Get the processStep
-        restProcessStepMockMvc.perform(get("/api/processSteps/{id}", Long.MAX_VALUE))
+        restProcessStepMockMvc.perform(get("/api/processStep/{id}", Long.MAX_VALUE))
                 .andExpect(status().isNotFound());
     }
 
@@ -230,15 +230,15 @@ public class ProcessStepResourceTest {
         processStep.setCreationTime(UPDATED_CREATION_TIME);
         processStep.setAcceptedTime(UPDATED_ACCEPTED_TIME);
         processStep.setCompletedTime(UPDATED_COMPLETED_TIME);
-        restProcessStepMockMvc.perform(put("/api/processSteps")
+        restProcessStepMockMvc.perform(put("/api/processStep")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(processStep)))
                 .andExpect(status().isOk());
 
         // Validate the ProcessStep in the database
-        List<ProcessStep> processSteps = processStepRepository.findAll();
-        assertThat(processSteps).hasSize(databaseSizeBeforeUpdate);
-        ProcessStep testProcessStep = processSteps.get(processSteps.size() - 1);
+        List<ProcessStep> processStep = processStepRepository.findAll();
+        assertThat(processStep).hasSize(databaseSizeBeforeUpdate);
+        ProcessStep testProcessStep = processStep.get(processStep.size() - 1);
         assertThat(testProcessStep.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testProcessStep.getTitle()).isEqualTo(UPDATED_TITLE);
         assertThat(testProcessStep.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
@@ -256,12 +256,12 @@ public class ProcessStepResourceTest {
 		int databaseSizeBeforeDelete = processStepRepository.findAll().size();
 
         // Get the processStep
-        restProcessStepMockMvc.perform(delete("/api/processSteps/{id}", processStep.getId())
+        restProcessStepMockMvc.perform(delete("/api/processStep/{id}", processStep.getId())
                 .accept(TestUtil.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk());
 
         // Validate the database is empty
-        List<ProcessStep> processSteps = processStepRepository.findAll();
-        assertThat(processSteps).hasSize(databaseSizeBeforeDelete - 1);
+        List<ProcessStep> processStep = processStepRepository.findAll();
+        assertThat(processStep).hasSize(databaseSizeBeforeDelete - 1);
     }
 }
