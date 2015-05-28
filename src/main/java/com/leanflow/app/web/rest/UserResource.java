@@ -51,7 +51,7 @@ public class UserResource {
     ResponseEntity<User> getUser(@PathVariable String login) {
         log.debug("REST request to get User : {}", login);
         return userRepository.findOneByLogin(login)
-                .map(user -> new ResponseEntity<>(user, HttpStatus.OK))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .map(user -> new ResponseEntity<User>(user, HttpStatus.OK))
+                .orElse(new ResponseEntity<User>(HttpStatus.NOT_FOUND));
     }
 }

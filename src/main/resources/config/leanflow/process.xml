@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process>
+    <step id="step1">
+        <transfer type="SEQ">
+            <conditional name="DEFAULT" step="step2" />
+        </transfer>
+    </step>
+    <step id="step2">
+        <transfer type="PRL">
+            <conditional name="YES" step="step3" />
+            <conditional name="NO" step="step4" />
+        </transfer>
+    </step>
+    <step id="step3">
+        <transfer type="SEQ">
+            <conditional name="DEFAULT" step="step5" />
+        </transfer>
+    </step>
+    <step id="step4">
+        <transfer type="SEQ">
+            <conditional name="DEFAULT" step="step6" />
+        </transfer>
+    </step>
+    <step id="step5">
+        <transfer type="PRL">
+            <conditional name="YES" end="true" />
+            <conditional name="NO" step="step2" />
+        </transfer>
+    </step>
+    <step id="step6">
+        <transfer type="SEQ">
+            <conditional name="DEFAULT" end="true" />
+        </transfer>
+    </step>
+</process>
